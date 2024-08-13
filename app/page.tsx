@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
-import Link from "next/link";
 import { Loader2, Download } from "lucide-react";
 import { Toaster, toast } from "react-hot-toast";
 import {
@@ -23,14 +22,6 @@ export default function Home() {
   const [optimizedImage, setOptimizedImage] = useState<string | null>(null);
   const [compressionRatio, setCompressionRatio] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [originalDimensions, setOriginalDimensions] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
-  const [optimizedDimensions, setOptimizedDimensions] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
   const [lossless, setLossless] = useState(false);
   const [originalObjectURL, setOriginalObjectURL] = useState<string | null>(
     null
@@ -43,8 +34,6 @@ export default function Home() {
         setFile(newFile);
         setOptimizedImage(null);
         setCompressionRatio(null);
-        setOriginalDimensions(null);
-        setOptimizedDimensions(null);
         if (originalObjectURL) {
           URL.revokeObjectURL(originalObjectURL);
         }
@@ -60,8 +49,6 @@ export default function Home() {
     setIsLoading(true);
     setOptimizedImage(null);
     setCompressionRatio(null);
-    setOriginalDimensions(null);
-    setOptimizedDimensions(null);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -81,10 +68,8 @@ export default function Home() {
       }
 
       const result = await response.json();
-      setOptimizedImage(result.optimizedUrl);
+      setOptimizedImage(result.optimizedImage);
       setCompressionRatio(result.compressionRatio);
-      setOriginalDimensions(result.originalDimensions);
-      setOptimizedDimensions(result.optimizedDimensions);
       toast.success("Image optimized successfully!");
     } catch (error) {
       console.error("Error optimizing image:", error);
@@ -203,12 +188,6 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-medium mb-3">Original</h3>
-                {originalDimensions && (
-                  <p className="mb-3">
-                    Dimensions: {originalDimensions.width} x{" "}
-                    {originalDimensions.height}
-                  </p>
-                )}
                 <Image
                   src={originalObjectURL!}
                   alt="Original"
@@ -220,12 +199,6 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="text-xl font-medium mb-3">Optimized</h3>
-                {optimizedDimensions && (
-                  <p className="mb-3">
-                    Dimensions: {optimizedDimensions.width} x{" "}
-                    {optimizedDimensions.height}
-                  </p>
-                )}
                 <Image
                   src={optimizedImage}
                   alt="Optimized"
@@ -236,14 +209,14 @@ export default function Home() {
                 />
               </div>
             </div>
-            <Link
+            <a
               href={optimizedImage}
-              download="optimized_image"
+              download="optimized_image.webp"
               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
             >
               <Download className="mr-2" />
               Download Optimized Image
-            </Link>
+            </a>
           </div>
         )}
       </div>
