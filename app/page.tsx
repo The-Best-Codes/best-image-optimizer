@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
-import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { Loader2, Download } from "lucide-react";
 import { Toaster, toast } from "react-hot-toast";
 import {
   ReactCompareSlider,
@@ -15,7 +16,7 @@ import {
 } from "react-compare-slider";
 
 export default function Home() {
-  const [quality, setQuality] = useState(80);
+  const [quality, setQuality] = useState(50);
   const [width, setWidth] = useState<number | undefined>(undefined);
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [file, setFile] = useState<File | null>(null);
@@ -31,16 +32,27 @@ export default function Home() {
     height: number;
   } | null>(null);
   const [lossless, setLossless] = useState(false);
+  const [originalObjectURL, setOriginalObjectURL] = useState<string | null>(
+    null
+  );
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      setOptimizedImage(null);
-      setCompressionRatio(null);
-      setOriginalDimensions(null);
-      setOptimizedDimensions(null);
-    }
-  };
+  const handleFileChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files[0]) {
+        const newFile = e.target.files[0];
+        setFile(newFile);
+        setOptimizedImage(null);
+        setCompressionRatio(null);
+        setOriginalDimensions(null);
+        setOptimizedDimensions(null);
+        if (originalObjectURL) {
+          URL.revokeObjectURL(originalObjectURL);
+        }
+        setOriginalObjectURL(URL.createObjectURL(newFile));
+      }
+    },
+    [originalObjectURL]
+  );
 
   const handleOptimize = async () => {
     if (!file) return;
@@ -168,14 +180,15 @@ export default function Home() {
             <h2 className="text-3xl font-semibold">Result</h2>
             <div className="bg-green-100 border border-green-300 rounded-md p-6">
               <p className="text-xl font-medium text-green-800">
-                Your file is now {compressionRatio?.toFixed(2)} times smaller!
+                Your file is now{" "}
+                {((compressionRatio as number) * 100)?.toFixed(2)}% smaller!
               </p>
             </div>
             <div className="w-full aspect-video relative">
               <ReactCompareSlider
                 itemOne={
                   <ReactCompareSliderImage
-                    src={URL.createObjectURL(file!)}
+                    src={originalObjectURL!}
                     alt="Original"
                   />
                 }
@@ -197,7 +210,7 @@ export default function Home() {
                   </p>
                 )}
                 <Image
-                  src={URL.createObjectURL(file!)}
+                  src={originalObjectURL!}
                   alt="Original"
                   width={400}
                   height={400}
@@ -223,6 +236,14 @@ export default function Home() {
                 />
               </div>
             </div>
+            <Link
+              href={optimizedImage}
+              download="optimized_image"
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              <Download className="mr-2" />
+              Download Optimized Image
+            </Link>
           </div>
         )}
       </div>
