@@ -22,7 +22,7 @@
     "framer-motion": "^11.11.11",
     "lucide-react": "^0.427.0",
     "multiparty": "^4.2.3",
-    "next": "^14.2.16",
+    "next": "^14.2.17",
     "react": "^18.3.1",
     "react-compare-image": "^3.4.0",
     "react-compare-slider": "^3.1.0",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/formidable": "^3.4.5",
     "@types/multiparty": "^0.0.36",
-    "@types/node": "^20.17.5",
+    "@types/node": "^20.17.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/sharp": "^0.31.1",
