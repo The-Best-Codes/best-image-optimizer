@@ -19,10 +19,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "formidable": "^3.5.2",
-    "framer-motion": "^11.11.11",
+    "framer-motion": "^11.11.17",
     "lucide-react": "^0.427.0",
     "multiparty": "^4.2.3",
-    "next": "^14.2.17",
+    "next": "^14.2.18",
     "react": "^18.3.1",
     "react-compare-image": "^3.4.0",
     "react-compare-slider": "^3.1.0",
@@ -43,8 +43,8 @@
     "@types/uuid": "^10.0.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.5",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
     "typescript": "^5.6.3"
   }
 }
