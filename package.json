@@ -29,7 +29,7 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.4.1",
     "sharp": "^0.33.5",
-    "tailwind-merge": "^2.5.5",
+    "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.0.3"
   },
