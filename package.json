@@ -19,7 +19,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "formidable": "^3.5.2",
-    "framer-motion": "^11.13.1",
+    "framer-motion": "^12.4.10",
     "lucide-react": "^0.469.0",
     "multiparty": "^4.2.3",
     "next": "^15.0.4",
