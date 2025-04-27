@@ -6,12 +6,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    turbo: {
-      useSwcCss: true,
-      treeShaking: true,
-    },
-  },
 };
 
 export default nextConfig;
