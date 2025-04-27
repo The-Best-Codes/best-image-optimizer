@@ -1,18 +1,17 @@
 "use client";
-
-import { useState, useCallback } from "react";
-import { Slider } from "@/components/ui/slider";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { Download, Loader2 } from "lucide-react";
 import Image from "next/image";
-import { Loader2, Download } from "lucide-react";
-import { Toaster, toast } from "react-hot-toast";
+import { useCallback, useState } from "react";
 import {
   ReactCompareSlider,
   ReactCompareSliderImage,
 } from "react-compare-slider";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Home() {
   const [quality, setQuality] = useState(50);
@@ -24,7 +23,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [lossless, setLossless] = useState(false);
   const [originalObjectURL, setOriginalObjectURL] = useState<string | null>(
-    null
+    null,
   );
 
   const handleFileChange = useCallback(
@@ -40,7 +39,7 @@ export default function Home() {
         setOriginalObjectURL(URL.createObjectURL(newFile));
       }
     },
-    [originalObjectURL]
+    [originalObjectURL],
   );
 
   const handleOptimize = async () => {

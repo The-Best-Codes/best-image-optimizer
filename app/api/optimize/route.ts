@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
-import { v4 as uuidv4 } from "uuid";
-import sharp from "sharp";
 import rateLimiter from "@/utils/ratelimiter";
+import { NextResponse } from "next/server";
+import sharp from "sharp";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: Request) {
   try {
     const { success } = await rateLimiter.limit(
-      request.headers.get("x-forwarded-for") || "unknown"
+      request.headers.get("x-forwarded-for") || "unknown",
     );
 
     if (!success) {
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     console.error("Error optimizing image:", error);
     return NextResponse.json(
       { error: "Image optimization failed" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
