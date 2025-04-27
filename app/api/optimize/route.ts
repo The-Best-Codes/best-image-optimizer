@@ -1,18 +1,9 @@
-import rateLimiter from "@/utils/ratelimiter";
 import { NextResponse } from "next/server";
 import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: Request) {
   try {
-    const { success } = await rateLimiter.limit(
-      request.headers.get("x-forwarded-for") || "unknown",
-    );
-
-    if (!success) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-    }
-
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
 
