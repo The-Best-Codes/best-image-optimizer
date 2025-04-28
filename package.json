@@ -45,5 +45,5 @@
     "sharp",
     "unrs-resolver"
   ],
-  "packageManager": "bun@1.2.10"
+  "packageManager": "npm@11.3.0"
 }

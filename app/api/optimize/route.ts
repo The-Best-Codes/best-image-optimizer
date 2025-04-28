@@ -55,12 +55,15 @@ export async function POST(request: Request) {
     // Convert optimized image to base64
     const optimizedBase64 = optimizedBuffer.toString("base64");
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       fileId,
       originalName: file.name,
       optimizedImage: `data:image/webp;base64,${optimizedBase64}`,
       compressionRatio,
     });
+
+    response.headers.set("Cache-Control", "public, max-age=31536000"); // Cache for one year
+    response.headers.set("CDN-Cache-Control", "public, max-age=31536000"); // Cache for one year
   } catch (error) {
     console.error("Error optimizing image:", error);
     return NextResponse.json(
