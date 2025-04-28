@@ -1,10 +1,10 @@
 {
   "name": "best-image-optimizer",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbo",
     "start": "next start",
     "lint": "next lint"
   },
