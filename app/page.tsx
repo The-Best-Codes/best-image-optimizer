@@ -110,7 +110,7 @@ export default function BestImageOptimizer() {
       <h1 className="text-3xl font-semibold text-foreground mb-6">
         Best Image Optimizer
       </h1>
-      <div className="lg:flex lg:space-x-8 w-full max-w-4xl">
+      <div className="lg:flex lg:space-x-4 w-full max-w-4xl">
         <div className="bg-card flex flex-col rounded-md border-border border-1 p-4 w-full lg:w-1/2">
           <div className="mb-6">
             <Label
@@ -229,7 +229,7 @@ export default function BestImageOptimizer() {
           </Button>
         </div>
 
-        <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-4 rounded-md border-border border-1">
+        <div className="w-full lg:w-1/2 mt-4 lg:mt-0 flex flex-col items-center justify-center p-4 rounded-md border-border border-1">
           {optimizedImage ? (
             <div className="w-full">
               <h2 className="text-xl font-semibold text-foreground mb-2">
