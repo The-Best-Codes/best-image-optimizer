@@ -6,8 +6,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  serverExternalPackages: ["sharp"],
-  /* Uncomment when using webpack:
+  //serverExternalPackages: ["sharp"],
   webpack: (cfg, options = {}) => {
     cfg.externals.push("sharp");
     const { webpack } = options;
@@ -18,7 +17,6 @@ const nextConfig = {
       }),
     );
   },
-  */
 };
 
 export default nextConfig;
