@@ -98,7 +98,7 @@ export default function BestImageOptimizer() {
     if (optimizedImage) {
       const link = document.createElement("a");
       link.href = optimizedImage;
-      link.download = "optimized_image.png";
+      link.download = "optimized_image.webp";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -250,7 +250,7 @@ export default function BestImageOptimizer() {
                     <img
                       src={originalImage}
                       alt="Original"
-                      className="rounded-md object-contain"
+                      className="rounded-md object-contain w-full h-full"
                       style={{ maxHeight: "300px" }}
                     />
                   }
@@ -258,7 +258,7 @@ export default function BestImageOptimizer() {
                     <img
                       src={optimizedImage}
                       alt="Optimized"
-                      className="rounded-md object-contain"
+                      className="rounded-md object-contain w-full h-full"
                       style={{ maxHeight: "300px" }}
                     />
                   }
