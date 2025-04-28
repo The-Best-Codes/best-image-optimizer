@@ -16,6 +16,8 @@ const nextConfig = {
         resourceRegExp: regex,
       }),
     );
+
+    return cfg;
   },
 };
 
