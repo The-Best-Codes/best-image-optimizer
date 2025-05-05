@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<NextResponse> {
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
@@ -64,6 +64,8 @@ export async function POST(request: Request) {
 
     response.headers.set("Cache-Control", "public, max-age=31536000"); // Cache for one year
     response.headers.set("CDN-Cache-Control", "public, max-age=31536000"); // Cache for one year
+
+    return response;
   } catch (error) {
     console.error("Error optimizing image:", error);
     return NextResponse.json(
