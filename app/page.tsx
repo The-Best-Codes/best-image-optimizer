@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { ReactCompareSlider } from "react-compare-slider";
+import { toast } from "sonner";
 
 export default function BestImageOptimizer() {
   const [file, setFile] = useState<File | null>(null);
@@ -61,7 +62,7 @@ export default function BestImageOptimizer() {
 
   const optimizeImage = useCallback(async () => {
     if (!file) {
-      alert("Please select an image file.");
+      toast.error("Please select an image file.");
       return;
     }
 
@@ -86,9 +87,10 @@ export default function BestImageOptimizer() {
       const data = await response.json();
       setOptimizedImage(data.optimizedImage);
       setCompressionRatio(data.compressionRatio);
+      toast.success("Image optimized successfully!");
     } catch (error: any) {
       console.error("Optimization error:", error);
-      alert(`Image optimization failed: ${error.message}`);
+      toast.error(`Image optimization failed: ${error.message}`);
     } finally {
       setIsOptimizing(false);
     }
