@@ -217,12 +217,12 @@ export default function BestImageOptimizer() {
           >
             {isOptimizing ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="size-4 animate-spin" />
                 Optimizing...
               </>
             ) : (
               <>
-                <ImagePlus className="mr-2 h-4 w-4" />
+                <ImagePlus className="size-4" />
                 Optimize Image
               </>
             )}
@@ -283,7 +283,7 @@ export default function BestImageOptimizer() {
                   disabled={isOptimizing}
                   onClick={downloadOptimizedImage}
                 >
-                  <Download className="mr-2 h-4 w-4" />
+                  <Download className="size-4" />
                   Download
                 </Button>
               </div>
