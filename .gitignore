@@ -36,7 +36,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# upload
-public/uploads/*
-bun.lock
